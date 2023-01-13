@@ -22,5 +22,9 @@ function meuEscopo() {
             return false;
         }
     }
+
+    function getImg(peso, altura) {        
+        return (peso / altura ** 2).toFixed(2) ;
+    }
 }
 meuEscopo();
