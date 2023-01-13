@@ -3,7 +3,6 @@ function meuEscopo() {
         e.preventDefault();
 
         const form = document.querySelector('#formulario');
-        const resultado = document.querySelector('#resultado');
         const inputPeso = document.querySelector('#peso');
         const inputAltura = document.querySelector('#altura');
 
@@ -41,6 +40,21 @@ function meuEscopo() {
         } else{
             return `Abaixo do Peso`;
         }
+    }
+
+    function setResultado(msg, isValid) {
+        const resultado = document.querySelector('#resultado');
+        resultado.innerHTML = ``;
+        const p = document.createElement('p');
+
+        if (isValid) {
+            p.classList.add('p-true');          
+        } else{
+            p.classList.add('p-false');
+        }
+
+        p.innerHTML = `${msg}`;
+        resultado.appendChild(p);
     }
 }
 meuEscopo();
