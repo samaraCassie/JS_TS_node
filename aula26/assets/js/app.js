@@ -1,28 +1,32 @@
 function meuEscopo() {
+    const form = document.querySelector('#formulario');
+
     function recebeEventoForm(e) {
         e.preventDefault();
-
-        const form = document.querySelector('#formulario');
         const inputPeso = document.querySelector('#peso');
         const inputAltura = document.querySelector('#altura');
 
         const peso = Number(inputPeso.value);
         const altura = Number(inputAltura.value);
 
-        const msg;
-
         if (!peso) {
-            msg = `Peso Inválido`;
-            return false;
+            setResultado(`Peso Inválido`, false);
+            return;
         }
 
         if (!altura) {
-            msg = `Altura Inválida`;
-            return false;
+            setResultado(`Altura Inválida`, false);
+            return;
         }
+
+        const imc = getImc(peso, altura);
+        const nivelImc= getNivelImc(imc);
+        const msg = `Seu IMC é ${imc} (${nivelImc})`;
+        setResultado(msg, true);
+        return;
     }
 
-    function getImg(peso, altura) {        
+    function getImc(peso, altura) {        
         return (peso / altura ** 2).toFixed(2) ;
     }
 
@@ -53,8 +57,9 @@ function meuEscopo() {
             p.classList.add('p-false');
         }
 
-        p.innerHTML = `${msg}`;
+        p.innerHTML = msg;
         resultado.appendChild(p);
     }
+    form.addEventListener('submit', recebeEventoForm);
 }
 meuEscopo();
