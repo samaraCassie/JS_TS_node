@@ -21,7 +21,6 @@ document.addEventListener('click', e => {
   if (tag === 'a') {
     e.preventDefault();
     loadPag(element);
-
   }
 });
 
